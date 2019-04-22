@@ -9,10 +9,12 @@ import {
   View
 } from "react-native";
 import { WebBrowser } from "expo";
+import { connect } from "react-redux";
+import { getTodoTitle } from "../store/actions";
 
 import { MonoText } from "../components/StyledText";
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -23,6 +25,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { count } = this.state;
+    const { title } = this.props;
     return (
       <View style={styles.container}>
         <ScrollView
@@ -51,9 +54,7 @@ export default class HomeScreen extends React.Component {
               </MonoText>
             </View>
 
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
+            <Text style={styles.getStartedText}>Title: {title}</Text>
           </View>
 
           <View style={styles.helpContainer}>
@@ -92,6 +93,7 @@ export default class HomeScreen extends React.Component {
   };
 
   _handleHelpPress = () => {
+    this.props.getTodoTitle();
     this.setState({ count: this.state.count + 1 });
   };
 }
@@ -184,3 +186,11 @@ const styles = StyleSheet.create({
     color: "#2e78b7"
   }
 });
+
+export default connect(
+  state =>
+    console.log("state", state) || {
+      title: state.count.title
+    },
+  { getTodoTitle }
+)(HomeScreen);
