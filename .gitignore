@@ -7,3 +7,7 @@ npm-debug.*
 *.mobileprovision
 .idea/
 Untitled-1.js
+
+# Jest
+#
+.jest/

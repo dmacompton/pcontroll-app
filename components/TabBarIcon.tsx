@@ -3,7 +3,12 @@ import { Icon } from "expo";
 
 import Colors from "../constants/Colors";
 
-export default class TabBarIcon extends React.Component {
+interface Props {
+  name: string;
+  focused: boolean;
+}
+
+export default class TabBarIcon extends React.Component<Props> {
   render() {
     const { name, focused } = this.props;
 
