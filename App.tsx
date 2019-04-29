@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
-import promiseMiddleware from "redux-promise";
+import thunkMiddleware from 'redux-thunk';
 
 import {
   Platform,
@@ -12,9 +12,16 @@ import {
 } from "react-native";
 import { AppLoading, Asset, Font, Icon } from "expo";
 import AppNavigator from "./navigation/AppNavigator";
-import reducers from "./store/reducers";
+import reducers from "./store";
+import api from "./api/api";
 
 if (__DEV__) {
+  const _XHR = GLOBAL.originalXMLHttpRequest
+    ? GLOBAL.originalXMLHttpRequest
+    : GLOBAL.XMLHttpRequest;
+
+  XMLHttpRequest = _XHR;
+
   NativeModules.DevMenu.debugRemotely(true);
 }
 
@@ -78,10 +85,7 @@ const styles = StyleSheet.create({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  reducers,
-  composeEnhancers(applyMiddleware(promiseMiddleware))
-);
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware, api)));
 
 const appRedux = () => (
   <Provider store={store}>
