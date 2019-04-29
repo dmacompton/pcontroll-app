@@ -1,8 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TextStyle } from "react-native";
 
 interface Props {
-  style: StyleSheet;
+  style?: TextStyle;
 }
 
 export class MonoText extends React.Component<Props> {
