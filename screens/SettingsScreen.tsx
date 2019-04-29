@@ -1,17 +1,25 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ExpoConfigView } from "@expo/samples";
 
 import Auth from "../utils/Auth";
+import { NavigationScreenProps } from "react-navigation";
+import { connect } from "react-redux";
+import { logout } from "../store/auth/actions";
 
-export default class SettingsScreen extends React.Component {
+interface Props extends NavigationScreenProps<{}> {
+  logout: () => void;
+  errors: string[];
+}
+
+class SettingsScreen extends React.Component<Props> {
   static navigationOptions = {
-    title: "app.json"
+    title: "Settings"
   };
 
   logout = () => {
-    Auth.clearAuth();
+    this.props.logout();
     this.props.navigation.navigate("Auth");
+    Auth.clearAuth();
   };
 
   render() {
@@ -19,10 +27,9 @@ export default class SettingsScreen extends React.Component {
      * content, we just wanted to give you a quick view of your config */
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.logout} style={styles.helpLink}>
-          <Text style={styles.helpLinkText}>Logout</Text>
+        <TouchableOpacity onPress={this.logout} style={styles.signOut}>
+          <Text style={styles.signOutText}>Logout</Text>
         </TouchableOpacity>
-        <ExpoConfigView />
       </View>
     );
   }
@@ -34,11 +41,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff"
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: "#2e78b7",
-    backgroundColor: "red",
+  signOut: {
     borderRadius: 3,
-    padding: 14
+    borderColor: "red",
+    borderWidth: 1,
+    margin: 10
+  },
+  signOutText: {
+    color: "red",
+    paddingVertical: 10,
+    paddingHorizontal: 15
   }
 });
+
+export default connect(
+  () => ({}),
+  { logout }
+)(SettingsScreen);

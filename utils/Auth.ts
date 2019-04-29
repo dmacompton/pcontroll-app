@@ -3,11 +3,13 @@ import { AsyncStorage } from "react-native";
 const getUserToken = async () => {
   return await AsyncStorage.getItem("userToken");
 };
+
 const clearAuth = async () => {
   return await AsyncStorage.clear();
 };
-const setAuth = async () => {
-  return await AsyncStorage.setItem("userToken", "abc");
+
+const setAuth = async (token: string) => {
+  return await AsyncStorage.setItem("userToken", token);
 };
 
 export default {
@@ -15,3 +17,6 @@ export default {
   clearAuth,
   setAuth
 };
+
+
+// get asyncstorage showAsyncStorageContentInDev()
