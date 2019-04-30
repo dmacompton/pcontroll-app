@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   Platform,
@@ -7,12 +7,12 @@ import {
   Text,
   TouchableOpacity,
   View
-} from "react-native";
-import { WebBrowser } from "expo";
-import { connect } from "react-redux";
-import { getTodoTitle } from "../store/actions";
+} from 'react-native';
+import { WebBrowser } from 'expo';
+import { connect } from 'react-redux';
+import { getTodoTitle } from '../store/actions';
 
-import { MonoText } from "../components/StyledText";
+import { MonoText } from '../components/StyledText';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -28,16 +28,13 @@ class HomeScreen extends React.Component {
     const { title } = this.props;
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
               source={
                 __DEV__
-                  ? require("../assets/images/robot-dev.png")
-                  : require("../assets/images/robot-prod.png")
+                  ? require('../assets/images/robot-dev.png')
+                  : require('../assets/images/robot-prod.png')
               }
               style={styles.welcomeImage}
             />
@@ -46,40 +43,25 @@ class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <MonoText style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </MonoText>
+            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
 
             <Text style={styles.getStartedText}>Title: {title}</Text>
           </View>
 
           <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                You've pressed me {count} times.
-              </Text>
+            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
+              <Text style={styles.helpLinkText}>You've pressed me {count} times.</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
+          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
+          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
         </View>
       </View>
@@ -87,9 +69,7 @@ class HomeScreen extends React.Component {
   }
 
   _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      "https://docs.expo.io/versions/latest/guides/development-mode"
-    );
+    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
   };
 
   _handleHelpPress = () => {
@@ -101,59 +81,59 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   },
   developmentModeText: {
     marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
+    color: 'rgba(0,0,0,0.4)',
     fontSize: 14,
     lineHeight: 19,
-    textAlign: "center"
+    textAlign: 'center'
   },
   contentContainer: {
     paddingTop: 30
   },
   welcomeContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 10,
     marginBottom: 20
   },
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: "contain",
+    resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10
   },
   getStartedContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginHorizontal: 50
   },
   homeScreenFilename: {
     marginVertical: 7
   },
   codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
+    color: 'rgba(96,100,109, 0.8)'
   },
   codeHighlightContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
+    backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: 3,
     paddingHorizontal: 4
   },
   getStartedText: {
     fontSize: 17,
-    color: "rgba(96,100,109, 1)",
+    color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
-    textAlign: "center"
+    textAlign: 'center'
   },
   tabBarInfoContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: "black",
+        shadowColor: 'black',
         shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
         shadowRadius: 3
@@ -162,28 +142,28 @@ const styles = StyleSheet.create({
         elevation: 20
       }
     }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
+    alignItems: 'center',
+    backgroundColor: '#fbfbfb',
     paddingVertical: 20
   },
   tabBarInfoText: {
     fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    textAlign: "center"
+    color: 'rgba(96,100,109, 1)',
+    textAlign: 'center'
   },
   navigationFilename: {
     marginTop: 5
   },
   helpContainer: {
     marginTop: 15,
-    alignItems: "center"
+    alignItems: 'center'
   },
   helpLink: {
     paddingVertical: 15
   },
   helpLinkText: {
     fontSize: 14,
-    color: "#2e78b7"
+    color: '#2e78b7'
   }
 });
 

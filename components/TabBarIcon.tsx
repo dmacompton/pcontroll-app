@@ -1,7 +1,7 @@
-import React from "react";
-import { Icon } from "expo";
+import React from 'react';
+import { Icon } from 'expo';
 
-import Colors from "../constants/Colors";
+import Colors from '../constants/Colors';
 
 interface Props {
   name: string;

@@ -1,10 +1,10 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import Auth from "../utils/Auth";
-import { NavigationScreenProps } from "react-navigation";
-import { connect } from "react-redux";
-import { logout } from "../store/auth/actions";
+import Auth from '../utils/Auth';
+import { NavigationScreenProps } from 'react-navigation';
+import { connect } from 'react-redux';
+import { logout } from '../store/auth/actions';
 
 interface Props extends NavigationScreenProps<{}> {
   logout: () => void;
@@ -13,12 +13,12 @@ interface Props extends NavigationScreenProps<{}> {
 
 class SettingsScreen extends React.Component<Props> {
   static navigationOptions = {
-    title: "Settings"
+    title: 'Settings'
   };
 
   logout = () => {
     this.props.logout();
-    this.props.navigation.navigate("Auth");
+    this.props.navigation.navigate('Auth');
     Auth.clearAuth();
   };
 
@@ -38,17 +38,17 @@ class SettingsScreen extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#fff"
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   signOut: {
     borderRadius: 3,
-    borderColor: "red",
+    borderColor: 'red',
     borderWidth: 1,
     margin: 10
   },
   signOutText: {
-    color: "red",
+    color: 'red',
     paddingVertical: 10,
     paddingHorizontal: 15
   }

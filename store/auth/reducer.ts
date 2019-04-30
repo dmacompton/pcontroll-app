@@ -1,11 +1,5 @@
-import { iAction } from "../../types";
-import {
-  SIGNIN_FAILED,
-  SIGNIN_SUCCESS,
-  LOGOUT,
-  SIGNUP_FAILED,
-  SIGNUP_SUCCESS
-} from "./types";
+import { iAction } from '../../types';
+import { SIGNIN_FAILED, SIGNIN_SUCCESS, LOGOUT, SIGNUP_FAILED, SIGNUP_SUCCESS } from './types';
 
 export interface ErrorsSignUp {
   email?: string[];
@@ -39,10 +33,7 @@ const getErrors = (errorsArray: any) =>
     return acc;
   }, []);
 
-const authReducer = (
-  state: authState = { ...initialState },
-  action: iAction
-) => {
+const authReducer = (state: authState = { ...initialState }, action: iAction) => {
   switch (action.type) {
     case LOGOUT:
       return {

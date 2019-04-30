@@ -1,31 +1,21 @@
-import React, { Component } from "react";
-import { Text, View, TextInput, Keyboard } from "react-native";
-import { NavigationScreenProps } from "react-navigation";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Text, View, TextInput, Keyboard } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
+import { connect } from 'react-redux';
 
-import { ErrorsSignUp } from "../../store/auth/reducer";
-import { signUp, resendActivationLink } from "../../store/auth/actions";
-import { SIGNUP_FAILED } from "../../store/auth/types";
-import { iAction, StoreProps } from "../../types";
-import DismissKeyboard from "../../components/DismissKeyboard";
-import Button from "../../components/Button";
+import { ErrorsSignUp } from '../../store/auth/reducer';
+import { signUp, resendActivationLink } from '../../store/auth/actions';
+import { SIGNUP_FAILED } from '../../store/auth/types';
+import { iAction, StoreProps } from '../../types';
+import DismissKeyboard from '../../components/DismissKeyboard';
+import Button from '../../components/Button';
 
-import styles from "./styles";
-import {
-  FieldName,
-  FieldData,
-  FieldBackEndName,
-  SIGN_UP_FIELD_DATA
-} from "./data";
+import styles from './styles';
+import { FieldName, FieldData, FieldBackEndName, SIGN_UP_FIELD_DATA } from './data';
 
 interface Props extends NavigationScreenProps<{}> {
   signUpSuccessText: string;
-  signUp: (data: {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-  }) => any;
+  signUp: (data: { email: string; password: string; firstName: string; lastName: string }) => any;
   resendActivationLink: (email: string) => any;
 }
 
@@ -47,11 +37,11 @@ class SignUpScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      email: "dmacompton@gmail.com",
-      password: "admin",
-      firstName: "Dmitry",
-      lastName: "M",
-      emailResendLink: "some@mail.com",
+      email: 'dmacompton@gmail.com',
+      password: 'admin',
+      firstName: 'Dmitry',
+      lastName: 'M',
+      emailResendLink: 'some@mail.com',
       errors: {}
     };
   }
@@ -59,37 +49,28 @@ class SignUpScreen extends Component<Props, State> {
   signUp = () => {
     Keyboard.dismiss();
     const { email, password, firstName, lastName } = this.state;
-    this.props
-      .signUp({ email, password, firstName, lastName })
-      .then((action: iAction) => {
-        if (action.type === SIGNUP_FAILED) {
-          this.setState({ errors: action.payload });
-        }
-      });
+    this.props.signUp({ email, password, firstName, lastName }).then((action: iAction) => {
+      if (action.type === SIGNUP_FAILED) {
+        this.setState({ errors: action.payload });
+      }
+    });
   };
 
   resendLink = () => {
     Keyboard.dismiss();
     const { emailResendLink } = this.state;
     this.props.resendActivationLink(emailResendLink).then(() => {
-      console.log("email send to your email: ", emailResendLink);
+      console.log('email send to your email: ', emailResendLink);
     });
   };
 
   isValidSignUp = () => {
     const { email, password, firstName, lastName } = this.state;
 
-    return !(
-      email.length &&
-      password.length &&
-      firstName.length &&
-      lastName.length
-    );
+    return !(email.length && password.length && firstName.length && lastName.length);
   };
 
-  onChange = (key: FieldName, keyValidation?: FieldBackEndName) => (
-    value: string
-  ) => {
+  onChange = (key: FieldName, keyValidation?: FieldBackEndName) => (value: string) => {
     this.setState<never>(() => {
       const { errors } = this.state;
 
@@ -122,12 +103,7 @@ class SignUpScreen extends Component<Props, State> {
   renderFields = () => SIGN_UP_FIELD_DATA.map(this.renderField);
 
   renderField = (fieldData: FieldData) => {
-    const {
-      fieldName,
-      fieldBackEndName,
-      placeholder,
-      secureTextEntry
-    } = fieldData;
+    const { fieldName, fieldBackEndName, placeholder, secureTextEntry } = fieldData;
     const errors = this.state.errors[fieldBackEndName];
     const value = this.state[fieldName];
 
@@ -159,11 +135,7 @@ class SignUpScreen extends Component<Props, State> {
       <>
         {this.renderFields()}
 
-        <Button
-          onPress={this.signUp}
-          label="Sign Up"
-          disabled={this.isValidSignUp()}
-        />
+        <Button onPress={this.signUp} label="Sign Up" disabled={this.isValidSignUp()} />
       </>
     );
   };
@@ -179,12 +151,12 @@ class SignUpScreen extends Component<Props, State> {
           <View style={styles.hr} />
 
           <Text style={styles.text}>
-            Please enter your registered e-mail address here so that we can
-            resend you the activation link
+            Please enter your registered e-mail address here so that we can resend you the
+            activation link
           </Text>
           <TextInput
             style={styles.input}
-            onChangeText={this.onChange("emailResendLink")}
+            onChangeText={this.onChange('emailResendLink')}
             value={emailResendLink}
             placeholder="E-mail"
           />

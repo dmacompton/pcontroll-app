@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { Component } from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface Props {
   onPress(): void;
@@ -16,9 +16,7 @@ class Button extends Component<Props> {
         activeOpacity={disabled ? 1 : 0.3}
         disabled={disabled}
         onPress={!disabled ? onPress : undefined}
-        style={
-          disabled ? [styles.button, styles.buttonDisabled] : styles.button
-        }
+        style={disabled ? [styles.button, styles.buttonDisabled] : styles.button}
       >
         <Text style={styles.buttonText}>{label}</Text>
       </TouchableOpacity>
@@ -29,12 +27,12 @@ class Button extends Component<Props> {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 3,
-    borderColor: "#fff",
+    borderColor: '#fff',
     borderWidth: 1,
     margin: 15
   },
   buttonText: {
-    color: "#fff",
+    color: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 15
   },

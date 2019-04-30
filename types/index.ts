@@ -1,4 +1,4 @@
-import { authState } from "../store/auth/reducer";
+import { authState } from '../store/auth/reducer';
 
 export interface iAction {
   type: string;

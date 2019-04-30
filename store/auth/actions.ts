@@ -1,6 +1,6 @@
-import * as types from "./types";
-import { CALL_API } from "../../api/api";
-import { LOGIN, SIGNUP, RESEND_CODE, API_TYPE } from "../../api/ApiConstants";
+import * as types from './types';
+import { CALL_API } from '../../api/api';
+import { LOGIN, SIGNUP, RESEND_CODE, API_TYPE } from '../../api/ApiConstants';
 
 const { POST } = API_TYPE;
 
@@ -64,7 +64,7 @@ export const signUp = (data: {
       endpoint: SIGNUP,
       types: [signUpSuccess, signUpSuccess],
       params: {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           email: data.email,
           password: data.password,
@@ -75,9 +75,7 @@ export const signUp = (data: {
     }
   });
 
-export const resendActivationLink = (email: string) => (
-  dispatch: (data: any) => void
-) =>
+export const resendActivationLink = (email: string) => (dispatch: (data: any) => void) =>
   dispatch({
     [CALL_API]: {
       endpoint: RESEND_CODE,

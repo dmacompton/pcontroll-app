@@ -1,26 +1,24 @@
 // General api to access data
-import { BASE_URL } from "./ApiConstants";
-import { Store } from "redux";
+import { BASE_URL } from './ApiConstants';
+import { Store } from 'redux';
 
 interface iParams {
-  method: "POST" | "GET";
+  method: 'POST' | 'GET';
   headers: any;
 }
 
 interface iCallApi {
   params: iParams;
-  endpoint: "string";
+  endpoint: 'string';
   types: [(data: any) => void, (error: Error) => void];
 }
 
-export const CALL_API = Symbol("Call API");
+export const CALL_API = Symbol('Call API');
 
-export default (store: Store) => (next: (action: any) => any) => (
-  action: any
-) => {
+export default (store: Store) => (next: (action: any) => any) => (action: any) => {
   const callAPI: iCallApi = action[CALL_API];
 
-  if (typeof callAPI === "undefined") {
+  if (typeof callAPI === 'undefined') {
     return next(action);
   }
 
@@ -31,8 +29,8 @@ export default (store: Store) => (next: (action: any) => any) => (
   const config = {
     ...params,
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       ...(token && { token }),
       ...params.headers
     }
@@ -42,8 +40,8 @@ export default (store: Store) => (next: (action: any) => any) => (
     .then((resp: Response) => {
       let data;
 
-      const contentType = resp.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
+      const contentType = resp.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
         data = resp.json();
       } else {
         data = resp.text();

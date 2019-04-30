@@ -1,21 +1,13 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Keyboard,
-  TouchableOpacity,
-  Image
-} from "react-native";
-import { NavigationScreenProps } from "react-navigation";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TextInput, Keyboard, TouchableOpacity, Image } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
+import { connect } from 'react-redux';
 
-import { signIn } from "../store/auth/actions";
-import { StoreProps, iAction } from "../types";
-import Auth from "../utils/Auth";
-import DismissKeyboard from "../components/DismissKeyboard";
-import Button from "../components/Button";
+import { signIn } from '../store/auth/actions';
+import { StoreProps, iAction } from '../types';
+import Auth from '../utils/Auth';
+import DismissKeyboard from '../components/DismissKeyboard';
+import Button from '../components/Button';
 
 interface Props extends NavigationScreenProps<{}> {
   signIn: (data: { email: string; password: string }) => any;
@@ -36,13 +28,13 @@ class SignInScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      email: "admin@gmail.com",
-      password: "admin"
+      email: 'admin@gmail.com',
+      password: 'admin'
     };
   }
 
   signUp = () => {
-    this.props.navigation.navigate("SignUp");
+    this.props.navigation.navigate('SignUp');
   };
 
   signIn = () => {
@@ -54,12 +46,12 @@ class SignInScreen extends Component<Props, State> {
       } = action;
       if (token) {
         Auth.setAuth(token);
-        this.props.navigation.navigate("App");
+        this.props.navigation.navigate('App');
       }
     });
   };
 
-  onChange = (key: "email" | "password") => (value: string) => {
+  onChange = (key: 'email' | 'password') => (value: string) => {
     this.setState({ [key]: value } as Pick<State, keyof State>);
   };
 
@@ -73,22 +65,19 @@ class SignInScreen extends Component<Props, State> {
           <View style={styles.smallBlock} />
           <View style={styles.mainBlock}>
             <View style={styles.logoContainer}>
-              <Image
-                source={require("../assets/images/logo.png")}
-                style={styles.logoImage}
-              />
+              <Image source={require('../assets/images/logo.png')} style={styles.logoImage} />
             </View>
 
             <TextInput
               style={styles.input}
-              onChangeText={this.onChange("email")}
+              onChangeText={this.onChange('email')}
               value={email}
               placeholder="E-mail"
             />
 
             <TextInput
               style={styles.input}
-              onChangeText={this.onChange("password")}
+              onChangeText={this.onChange('password')}
               secureTextEntry={true}
               value={password}
               placeholder="Password"
@@ -116,48 +105,48 @@ class SignInScreen extends Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2374AB"
+    backgroundColor: '#2374AB'
   },
   smallBlock: {
-    height: "10%",
-    alignItems: "center"
+    height: '10%',
+    alignItems: 'center'
   },
   mainBlock: {
-    height: "80%",
-    alignItems: "center",
-    justifyContent: "center"
+    height: '80%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   input: {
-    width: "80%",
+    width: '80%',
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderRadius: 3,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     marginVertical: 5
   },
   error: {
-    color: "red"
+    color: 'red'
   },
   signUp: {
-    alignItems: "center",
+    alignItems: 'center',
     margin: 10,
     width: 100
   },
   signUpText: {
-    color: "#fff",
-    textDecorationLine: "underline",
+    color: '#fff',
+    textDecorationLine: 'underline',
     paddingVertical: 10,
     paddingHorizontal: 15
   },
   logoContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 10,
     marginBottom: 50
   },
   logoImage: {
     width: 142,
     height: 85,
-    resizeMode: "contain"
+    resizeMode: 'contain'
   }
 });
 
