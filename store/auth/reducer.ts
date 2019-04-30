@@ -1,14 +1,32 @@
 import { iAction } from "../../types";
-import { LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT } from "./types";
+import {
+  SIGNIN_FAILED,
+  SIGNIN_SUCCESS,
+  LOGOUT,
+  SIGNUP_FAILED,
+  SIGNUP_SUCCESS
+} from "./types";
+
+export interface ErrorsSignUp {
+  email?: string[];
+  password?: string[];
+  first_name?: string[];
+  last_name?: string[];
+  emailResendLink?: string[];
+}
 
 export interface authState {
   token: string | null;
+  signUpSuccessText: string;
   errors: string[];
+  errorsSignUp: ErrorsSignUp;
 }
 
 const initialState: authState = {
   token: null,
-  errors: []
+  errors: [],
+  errorsSignUp: {},
+  signUpSuccessText: ''
 };
 
 const getErrors = (errorsArray: any) =>
@@ -27,14 +45,29 @@ const authReducer = (
 ) => {
   switch (action.type) {
     case LOGOUT:
-      return { ...state, token: null };
-    case LOGIN_SUCCESS:
-      return { ...state, token: action.payload.token, errors: [] };
-    case LOGIN_FAILED:
+      return {
+        ...state,
+        token: null
+      };
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload.token,
+        errors: []
+      };
+    case SIGNIN_FAILED:
       return {
         ...state,
         errors: getErrors(action.payload)
       };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        signUpSuccessText: action.payload,
+        errorsSignUp: {}
+      };
+    case SIGNUP_FAILED:
+    // return { ...state, errorsSignUp: action.payload };
     default:
       return state;
   }

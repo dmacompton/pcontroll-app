@@ -1,5 +1,8 @@
 // login
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGOUT = 'LOGOUT';
-export const LOGIN_FAILED = 'LOGIN_FAILED';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const SIGNIN_FAILED = 'SIGNIN_FAILED';
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
+export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const RESEND_CODE_FAILED = 'RESEND_CODE_FAILED';
+export const RESEND_CODE_SUCCESS = 'RESEND_CODE_SUCCESS';

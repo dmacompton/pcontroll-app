@@ -40,13 +40,20 @@ export default (store: Store) => (next: (action: any) => any) => (
 
   return fetch(`${BASE_URL}${endpoint}`, config)
     .then((resp: Response) => {
-      const json = resp.json();
+      let data;
 
-      if (resp.status >= 200 && resp.status < 300) {
-        return json;
+      const contentType = resp.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = resp.json();
+      } else {
+        data = resp.text();
       }
 
-      return json.then(err => {
+      if (resp.status >= 200 && resp.status < 300) {
+        return data;
+      }
+
+      return data.then(err => {
         throw err;
       });
     })
