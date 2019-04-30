@@ -188,9 +188,8 @@ const styles = StyleSheet.create({
 });
 
 export default connect(
-  state =>
-    console.log("state", state) || {
-      title: state.count.title
-    },
+  state => ({
+    title: state.count.title
+  }),
   { getTodoTitle }
 )(HomeScreen);

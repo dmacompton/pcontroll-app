@@ -1,4 +1,6 @@
-const countReducer = (state = {}, action) => {
+import {iAction} from "../../types";
+
+const countReducer = (state = {}, action: iAction) => {
   switch (action.type) {
     case "GET_TODO_TITLE":
       console.log("todo", action.payload);
