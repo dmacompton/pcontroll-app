@@ -24,17 +24,28 @@ export const signUpFailed = (payload: { error: string }) => ({
   payload
 });
 
-export const resendActivationLinkSuccess = () => ({
-  type: types.RESEND_CODE_SUCCESS
+export const resendActivationLinkSuccess = (payload: { message: string }) => ({
+  type: types.RESEND_CODE_SUCCESS,
+  payload
 });
 
-export const resendActivationLinkFailed = (payload: { error: string }) => ({
+export const resendActivationLinkFailed = (payload: { detail?: string[]; email?: string[] }) => ({
   type: types.RESEND_CODE_FAILED,
   payload
 });
 
 export const logout = () => ({
   type: types.LOGOUT
+});
+
+export const updateField = (payload: { key: string; keyValidation: string; value: string }) => ({
+  type: types.UPDATE_FIELD,
+  payload
+});
+
+export const updateActivationCodeField = (payload: { value: string }) => ({
+  type: types.UPDATE_CODE_FIELD,
+  payload
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -62,7 +73,7 @@ export const signUp = (data: {
   dispatch({
     [CALL_API]: {
       endpoint: SIGNUP,
-      types: [signUpSuccess, signUpSuccess],
+      types: [signUpSuccess, signUpFailed],
       params: {
         method: 'POST',
         body: JSON.stringify({

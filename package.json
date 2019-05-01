@@ -38,7 +38,7 @@
     "react-native-typescript-transformer": "^1.2.12",
     "remote-redux-devtools": "^0.5.16",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.5"
   },
   "private": true
 }

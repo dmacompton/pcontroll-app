@@ -1,5 +1,9 @@
 // login
 export const LOGOUT = 'LOGOUT';
+export const UPDATE_FIELD = 'UPDATE_FIELD';
+export const UPDATE_CODE_FIELD = 'UPDATE_CODE_FIELD';
+
+
 export const SIGNIN_FAILED = 'SIGNIN_FAILED';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';

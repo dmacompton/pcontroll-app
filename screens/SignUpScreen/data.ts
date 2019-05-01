@@ -1,4 +1,4 @@
-export type FieldName = 'email' | 'password' | 'firstName' | 'lastName' | 'emailResendLink';
+export type FieldName = 'email' | 'password' | 'firstName' | 'lastName';
 
 export type FieldData = {
   fieldName: FieldName;
